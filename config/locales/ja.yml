@@ -4,37 +4,34 @@ ja:
     submit:
       create: "登録する"
       update: "更新する"
-  links:
-    new: 本を登録する
-    show: 本を表示する
-    edit: 本を編集する
-    destroy: 本を破棄する
-    back: 一覧に戻る
-  html_text:
-    headlines:
-      title: 本棚
-      new: 本の登録
-      edit: 本の編集
-    book_items:
-      title: 'タイトル:'
-      memo: 'メモ:'
-      author: '著者:'
-      picture: '写真:'
-    error_messages:
-      registration_error: '本を保存することができませんでした。 :'
-      error_count: 'エラー！ '
+  books:
+    index:
+      headline: 本棚
+    new:
+      headline: 本の登録
+    edit:
+      headline: 本の編集
+  views:
+    links:
+      new: 本を登録する
+      show: 本を表示する
+      edit: 本を編集する
+      destroy: 本を破棄する
+      back: 一覧に戻る
   controllers:
-    book:
-      flash_messages:
-        create: "「%{title}」の作成に成功しました。"
-        update: "「%{title}」の更新に成功しました。"
-        destroy: "「%{title}」の破棄に成功しました。"
+    flash_messages:
+      create: "「%{target}」の作成に成功しました。"
+      update: "「%{target}」の更新に成功しました。"
+      destroy: "「%{target}」の破棄に成功しました。"
   activerecord:
     models:
       book: 本
     attributes:
       book:
-        author: 著者
-        memo: メモ
-        picture: 写真
         title: タイトル
+        memo: メモ
+        author: 著者
+        picture: 写真
+  error_messages:
+    registration_error: '本を保存することができませんでした。 :'
+    error_count: 'エラー！ '
