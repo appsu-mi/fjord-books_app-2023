@@ -13,14 +13,18 @@
 
   <body class="<%= params[:action] %>">
     <% if current_user %>
+      <% current_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
     <div class="d-flex justify-content-between">
-      <h3>ユーザー名：<%= current_user.name %></h3>
-      <%= link_to "ログアウト", users_sign_out_path, data: { turbo_method: :delete } %>
+      <h3><%= current_user.name %></h3>
+      <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
     </div>
+    <% else %>
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
     <% end %>
-    <%#  %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

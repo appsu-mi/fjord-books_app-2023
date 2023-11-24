@@ -3,13 +3,11 @@
 class Users::PasswordsController < Devise::PasswordsController
   skip_before_action :require_login
 
-# パスワード再設定の画面
   # GET /resource/password/new
   def new
     super
   end
 
-  # パスワード再設定　メール送るやつ
   # POST /resource/password
   def create
     super
@@ -31,7 +29,6 @@ class Users::PasswordsController < Devise::PasswordsController
     super(resource)
   end
 
-   # リセットパスワードの指示を送信した後に使用する path
   def after_sending_reset_password_instructions_path_for(resource_name)
     super(resource_name)
   end

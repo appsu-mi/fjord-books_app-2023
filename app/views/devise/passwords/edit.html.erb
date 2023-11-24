@@ -1,7 +1,6 @@
 <h2><%= t('.change_your_password') %></h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+<%= form_with model: resource, url: password_path(resource_name), method: :patch  do |f| %>
   <%= f.hidden_field :reset_password_token %>
 
   <div class="field">
@@ -23,4 +22,4 @@
 <% end %>
 
 <%= link_to 'ユーザー一覧',  users_path%>
-<%= render "users/shared/links" %>
+<%= render "devise/shared/links" %>
