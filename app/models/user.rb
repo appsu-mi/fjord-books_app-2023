@@ -3,9 +3,10 @@
 class User < ApplicationRecord
   validates :name, presence: true
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
+  # ユーザー情報をupdateする際、パスワードの変更があればcurrent_passwordの入力を必須とする。
+  # パスワードの変更がなければcurrent_passwordがなくてもupdate出来る。
   def update_without_current_password(params, *options)
     if params[:password].blank?
       params.delete(:password)

@@ -21,8 +21,7 @@ class ApplicationController < ActionController::Base
                          :email, :password, :password_confirmation, :current_password, :postal_code, :name, :address, :self_introduction)
     end
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-      user_params.permit({ roles: [] },
-                         :name, :email, :password, :password_confirmation)
+      user_params.permit({ roles: [] }, :name, :email, :password, :password_confirmation)
     end
   end
 end

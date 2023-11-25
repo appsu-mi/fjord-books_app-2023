@@ -1,6 +1,10 @@
 <h2><%= t('.title', resource: User.model_name.human) %></h2>
 
-<%= form_with model: resource, url: update_user_path  do |f| %>
+<% current_user.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+<% end %>
+
+<%= form_with model: current_user, url: update_user_path  do |f| %>
 
   <div class="field">
     <%= f.label :email %>
@@ -24,26 +28,25 @@
 
   <div class="field">
     <%= f.label :self_introduction %>
-    <%= f.text_area :self_introduction, autocomplete: "off" %>
+    <%= f.text_area :self_introduction %>
   </div>
 
   <div class="field">
     <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password %>
     <% if @minimum_password_length %>
-
       <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
     <% end %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation %>
   </div>
 
   <div class="field">
     <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i>
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <%= f.password_field :current_password %>
   </div>
 
   <div class="actions">
@@ -52,4 +55,4 @@
 <% end %>
 
 <%= link_to t('devise.shared.links.back'), :back %>
-<%= link_to 'ユーザー一覧',  users_path%>
+<%= link_to t("users.index.title"), users_path %>

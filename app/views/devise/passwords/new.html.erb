@@ -1,6 +1,6 @@
 <h2><%= t('.forgot_your_password') %></h2>
 
-<%= form_with model: resource, url: password_path(resource_name)  do |f| %>
+<%= form_with model: resource, url: password_path(resource_name) do |f| %>
   <div class="field">
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
