@@ -1,6 +1,6 @@
 <h2><%= t('.title', resource: User.model_name.human) %></h2>
 
-<% current_user.errors.full_messages.each do |message| %>
+<% resource.errors.full_messages.each do |message| %>
   <li><%= message %></li>
 <% end %>
 

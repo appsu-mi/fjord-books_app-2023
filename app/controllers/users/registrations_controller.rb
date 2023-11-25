@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  skip_before_action :require_login
-
   protected
 
   # updateアクションで呼ばれるメソッド。models/user.rbに詳細コードがあります。
