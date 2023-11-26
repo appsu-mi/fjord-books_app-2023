@@ -25,4 +25,11 @@
     <%= user.self_introduction %>
   </p>
 
+  <p>
+    <strong><%= User.human_attribute_name(:image) %>:</strong>
+    <% if user.image.attached? %>
+      <%= image_tag user.image.variant(resize_to_limit: [50, 50]) %>
+    <% end %>
+  </p>
+
 </div>
