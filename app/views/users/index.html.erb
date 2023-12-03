@@ -1,6 +1,6 @@
 <div class="container">
 
-  <h2><%= t(".title") %></h2>
+  <h2><%= t('.title') %></h2>
 
   <% @users.each do |user| %>
     <ul>
@@ -13,6 +13,6 @@
   <% end %>
 
   <%= paginate @users %>
-  <%= link_to t("views.common.title_index", name: "本"), root_path %>
+  <%= link_to t('views.common.title_index', name: Book.model_name.human), root_path %>
 
 </div>

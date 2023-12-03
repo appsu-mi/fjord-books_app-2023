@@ -49,10 +49,13 @@
     <%= f.password_field :current_password %>
   </div>
 
-  <div class="actions">
+  <div class="actions mb-3">
     <%= f.submit t('.update') %>
   </div>
 <% end %>
+<div>
+  <%= button_to t('.cancel_my_account'), registration_path(@user), data: { turbo_confirm:t('.are_you_sure') }, method: :delete, class: "mb-4" %>
+</div>
 
 <%= link_to t('devise.shared.links.back'), :back %>
-<%= link_to t("users.index.title"), users_path %>
+<%= link_to t('users.index.title'), users_path %>

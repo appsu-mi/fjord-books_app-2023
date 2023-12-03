@@ -21,15 +21,12 @@
   <br>
 
   <% if @user == current_user %>
-    <nav class="d-flex justify-content-between align-items-end mb-3">
-      <%= link_to t("users.registrations.edit.title", resource: "プロフィール"), edit_user_registration_path %>
-      <%= button_to "アカウントを削除する。", registration_path(@user),
-        data: { turbo_confirm: "本当によろしいですか？" },
-        method: :delete,
-        class: "bg-danger text-white border-0" %>
+    <nav class="page-nav mb-3">
+      <%= link_to t('users.registrations.edit.title', resource: User.model_name.human), edit_user_registration_path, class:"me-3" %>
+      <%= link_to t('users.index.title'), users_path %>
     </nav>
+  <% else %>
+    <%= link_to t('users.index.title'), users_path %>
   <% end %>
-
-  <%= link_to t("users.index.title"), users_path %>
 
 </div>
