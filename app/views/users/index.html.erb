@@ -4,7 +4,7 @@
 
   <% @users.each do |user| %>
     <ul>
-      <% if user.eql?(current_user) %>
+      <% if user == current_user %>
         <li><%= link_to "#{user.name}(あなた)", user_path(user) %></li>
       <% else %>
         <li><%= link_to user.name, user_path(user) %></li>

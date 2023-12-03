@@ -2,15 +2,7 @@
 
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-
-  private
-
-  def require_login
-    return if current_user
-
-    flash[:error] = 'このページにアクセスするにはログインが必要です'
-    redirect_to new_user_session_url
-  end
+  before_action :authenticate_user!
 
   protected
 
@@ -22,5 +14,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
       user_params.permit({ roles: [] }, :name, :email, :password, :password_confirmation)
     end
+  end
+
+  def after_sign_in_path_for(_resource_or_scope)
+    root_path
+  end
+
+  def after_sign_out_path_for(_resource_or_scope)
+    user_session_path
   end
 end

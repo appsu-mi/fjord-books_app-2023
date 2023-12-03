@@ -1,15 +1,8 @@
 class AddColumnUsers < ActiveRecord::Migration[7.0]
-  def up
-    add_column :users, :name, :string
+  def change
+    add_column :users, :name, :string, unique: true, null: false
     add_column :users, :address, :string
     add_column :users, :postal_code, :string
     add_column :users, :self_introduction, :string
-  end
-
-  def down
-    remove_column :users, :name, :string
-    remove_column :users, :address, :string
-    remove_column :users, :postal_code, :string
-    remove_column :users, :self_introduction, :string
   end
 end
