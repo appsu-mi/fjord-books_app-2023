@@ -20,7 +20,7 @@
   <p class="border-bottom ms-3"><%= @user.self_introduction %></p>
   <br>
 
-  <% if @user.eql?(current_user) %>
+  <% if @user == current_user %>
     <nav class="page-nav mb-3">
       <%= link_to t("users.registrations.edit.title", resource: "プロフィール"), edit_user_registration_path %>
     </nav>
