@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :postal_code %>
-    <%= f.telephone_field :postal_code, autocomplete: "postal_code" %>
+    <%= f.telephone_field :postal_code, autocomplete: "postal-code" %>
   </div>
 
   <div class="field">
@@ -23,17 +23,17 @@
 
   <div class="field">
     <%= f.label :address %>
-    <%= f.text_field :address, autocomplete: "address" %>
+    <%= f.text_field :address, autocomplete: "off" %>
   </div>
 
   <div class="field">
     <%= f.label :self_introduction %>
-    <%= f.text_area :self_introduction %>
+    <%= f.text_area :self_introduction, autocomplete: "off" %>
   </div>
 
   <div class="field">
     <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
     <% end %>
@@ -41,12 +41,12 @@
 
   <div class="field">
     <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
     <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i>
-    <%= f.password_field :current_password %>
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
   <div class="actions mb-3">
