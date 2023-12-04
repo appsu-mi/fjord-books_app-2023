@@ -1,0 +1,31 @@
+<h1><%= t('views.common.title_show', name: Report.model_name.human) %></h1>
+
+<div class="conteiner border p-3 mb-4">
+
+  <%= render 'report', report: @report %>
+
+  <div class="d-flex border justify-content-between p-3">
+    <p class="w-80">
+      <%= @report.content %>
+    </p>
+    <small class="w-20"><%= Comment.model_name.human %>(<%= @report.find_comments.length %>)</small>
+  </div>
+
+</div>
+
+<% if @report.user == current_user %>
+  <div class="d-flex mb-4">
+    <%= link_to t('views.common.edit', name: Report.model_name.human), edit_report_path(@report), class: "me-4" %>
+    <%= button_to t('views.common.destroy', name: Report.model_name.human), @report, method: :delete %>
+  </div>
+<% end %>
+
+<div class="mb-4">
+  <% @report.find_comments.each do |comment| %>
+    <%= render "comments/index", comment: comment, target: @report %>
+  <% end %>
+</div>
+
+<%= render "comments/form", target: @report %>
+
+<%= link_to t('views.common.back', name: i18n_pluralize(Report.model_name.human)), reports_path %>

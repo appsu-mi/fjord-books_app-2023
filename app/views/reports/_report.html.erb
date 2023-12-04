@@ -1,0 +1,24 @@
+  <div class="d-flex mb-3">
+
+    <div>
+      <% if report.user.avatar.attached? %>
+        <br>
+        <%= image_tag report.user.avatar.variant(:thumb) %>
+      <% end %>
+    </div>
+
+    <div>
+      <p>
+        <strong class="me-2"><%= Report.human_attribute_name(:title) %>:</strong>
+        <%= link_to report.title, report %>
+      </p>
+      <div class="d-flex">
+        <p>
+          <strong class="me-2"><%= report.user.name == "" ? User.human_attribute_name(:email) : User.human_attribute_name(:name) %>:</strong>
+          <%= link_to report.user.name == "" ? report.user.email : report.user.name, report.user, class: "me-3" %>
+        </p>
+        <%= l(report.created_at, format: :long) %>
+      </div>
+    </div>
+
+  </div>

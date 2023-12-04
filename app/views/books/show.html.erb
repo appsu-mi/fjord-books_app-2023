@@ -4,6 +4,15 @@
   <%= render @book %>
 </div>
 
+<div>
+  <h2><%= Comment.model_name.human %></h2>
+  <% @book.find_comments.each do |comment| %>
+    <%= render "comments/index", comment: comment, target: @book %>
+  <% end %>
+</div>
+
+<%= render "comments/form", target: @book %>
+
 <nav class="page-nav">
   <%= link_to t('views.common.edit', name: Book.model_name.human.downcase), edit_book_path(@book) %> |
   <%= link_to t('views.common.back', name: i18n_pluralize(Book.model_name.human.downcase)), books_path %>
