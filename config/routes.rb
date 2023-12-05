@@ -6,10 +6,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    passwords: 'users/passwords',
-    registrations: 'users/registrations'
-  }
+  devise_for :users
   resources :users, only: [:index, :show]
 end
