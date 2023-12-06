@@ -1,0 +1,18 @@
+<div class="container">
+
+  <h2><%= t('.title') %></h2>
+
+  <% @users.each do |user| %>
+    <ul>
+      <% if user == current_user %>
+        <li><%= link_to "#{user.name}(あなた)", user_path(user) %></li>
+      <% else %>
+        <li><%= link_to user.name, user_path(user) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= paginate @users %>
+  <%= link_to t('views.common.title_index', name: Book.model_name.human), root_path %>
+
+</div>

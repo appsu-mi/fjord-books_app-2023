@@ -1,0 +1,32 @@
+<div class="container">
+
+  <strong><%= User.human_attribute_name(:email) %>: </strong>
+  <p class="border-bottom ms-3"><%= @user.email %></p>
+  <br>
+
+  <strong><%= User.human_attribute_name(:postal_code) %>: </strong><br />
+  <p class="border-bottom ms-3"><%= @user.postal_code %></p>
+  <br>
+
+  <strong><%= User.human_attribute_name(:address) %>: </strong><br />
+  <p class="border-bottom ms-4"><%= @user.address %></p>
+  <br>
+
+  <strong><%= User.human_attribute_name(:name) %>: </strong><br />
+  <p class="border-bottom ms-3"><%= @user.name %></p>
+  <br>
+
+  <strong><%= User.human_attribute_name(:self_introduction) %>: </strong>
+  <p class="border-bottom ms-3"><%= @user.self_introduction %></p>
+  <br>
+
+  <% if @user == current_user %>
+    <nav class="page-nav mb-3">
+      <%= link_to t('users.registrations.edit.title', resource: User.model_name.human), edit_user_registration_path, class:"me-3" %>
+      <%= link_to t('users.index.title'), users_path %>
+    </nav>
+  <% else %>
+    <%= link_to t('users.index.title'), users_path %>
+  <% end %>
+
+</div>

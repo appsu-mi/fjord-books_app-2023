@@ -1,0 +1,61 @@
+<h2><%= t('.title', resource: User.model_name.human) %></h2>
+
+<% resource.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+<% end %>
+
+<%= form_with model: current_user, url: user_registration_path  do |f| %>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :postal_code %>
+    <%= f.telephone_field :postal_code, autocomplete: "postal-code" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :self_introduction %>
+    <%= f.text_area :self_introduction %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i>
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i>
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+
+  <div class="actions mb-3">
+    <%= f.submit t('.update') %>
+  </div>
+<% end %>
+<div>
+  <%= button_to t('.cancel_my_account'), registration_path(@user), data: { turbo_confirm:t('.are_you_sure') }, method: :delete, class: "mb-4" %>
+</div>
+
+<%= link_to t('devise.shared.links.back'), :back %>
+<%= link_to t('users.index.title'), users_path %>
