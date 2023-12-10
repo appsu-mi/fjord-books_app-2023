@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  # DELETE /books/1/comments/1
+  # DELETE /targets/1/comments/1
   def destroy
     comment = current_user.comments.find(params[:id])
 

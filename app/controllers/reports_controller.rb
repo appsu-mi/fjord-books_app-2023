@@ -56,8 +56,6 @@ class ReportsController < ApplicationController
   end
 
   def require_my_report
-    return if current_user.reports.find(params[:id])
-
-    redirect_to reports_url, notice: t('errors.messages.unauthorized')
+    redirect_to reports_url, notice: t('errors.messages.unauthorized') unless current_user.reports.find_by(id: params[:id])
   end
 end
