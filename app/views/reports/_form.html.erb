@@ -1,11 +1,11 @@
 <%= form_with(model: report) do |form| %>
   <div>
-    <%= form.label :title, style: "display: block" %>
+    <%= form.label :title, class: "d-block" %>
     <%= form.text_field :title %>
   </div>
 
   <div>
-    <%= form.label :content, style: "display: block" %>
+    <%= form.label :content, class: "d-block" %>
     <%= form.text_area :content %>
   </div>
 

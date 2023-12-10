@@ -1,6 +1,6 @@
 <%= form_with model: [target, target.comments.build] do |form| %>
   <div>
-    <%= form.label :content, style: "display: block" %>
+    <%= form.label :content, class: "d-block" %>
     <%= form.text_area :content, require: true %>
   </div>
   <div>

@@ -5,11 +5,13 @@
 </div>
 
 <div>
-  <h2><%= Comment.model_name.human %></h2>
-  <% @book.find_comments.each do |comment| %>
-    <%= render "comments/index", comment: comment, target: @book %>
-  <% end %>
+  <div class="d-flex justify-content-between align-items-center p-3">
+    <h2><%= Comment.model_name.human %></h2>
+    <small class="w-20"><%= Comment.model_name.human %>(<%= @book.comments.count %>)</small>
+  </div>
 </div>
+
+<%= render "comments/comments", target: @book %>
 
 <%= render "comments/form", target: @book %>
 

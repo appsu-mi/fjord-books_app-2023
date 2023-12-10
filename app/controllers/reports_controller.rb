@@ -2,7 +2,7 @@
 
 class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit update destroy]
-  before_action :require_reports, only: %i[edit update destroy]
+  before_action :require_my_report, only: %i[edit update destroy]
 
   # GET /reports
   def index
@@ -55,8 +55,8 @@ class ReportsController < ApplicationController
     params.require(:report).permit(:title, :content)
   end
 
-  def require_reports
-    return if @report.user_id == current_user.id
+  def require_my_report
+    return if current_user.reports.find(params[:id])
 
     redirect_to reports_url, notice: t('errors.messages.unauthorized')
   end

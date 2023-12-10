@@ -14,8 +14,8 @@
       </p>
       <div class="d-flex">
         <p>
-          <strong class="me-2"><%= report.user.name == "" ? User.human_attribute_name(:email) : User.human_attribute_name(:name) %>:</strong>
-          <%= link_to report.user.name == "" ? report.user.email : report.user.name, report.user, class: "me-3" %>
+          <strong class="me-2"><%= User.model_name.human %>:</strong>
+          <%= link_to report.user.name_or_email, report.user, class: "me-3" %>
         </p>
         <%= l(report.created_at, format: :long) %>
       </div>
