@@ -48,7 +48,7 @@ class Report < ApplicationRecord
 
   def update_mention(content)
     mentioning_report_ids.each do |id|
-      Mention.find_by(mentioning_id: self.id, mentioned_id: id).destroy! unless content.include? "http://localhost:3000/reports/#{id}"
+      active_mentions.find_by(mentioned_id: id).destroy! unless content.include? "http://localhost:3000/reports/#{id}"
     end
   end
 end
