@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class ReportsController < ApplicationController
-  before_action :set_report, only: %i[show edit update destroy]
-  before_action :require_my_report, only: %i[edit update destroy]
+  before_action :set_my_report, only: %i[edit update destroy]
 
   # GET /reports
   def index
@@ -10,7 +9,9 @@ class ReportsController < ApplicationController
   end
 
   # GET /reports/1
-  def show; end
+  def show
+    @report = Report.find(params[:id])
+  end
 
   # GET /reports/new
   def new
@@ -47,15 +48,11 @@ class ReportsController < ApplicationController
 
   private
 
-  def set_report
-    @report = Report.find(params[:id])
+  def set_my_report
+    @report = current_user.reports.find(params[:id])
   end
 
   def report_params
     params.require(:report).permit(:title, :content)
-  end
-
-  def require_my_report
-    redirect_to reports_url, notice: t('errors.messages.unauthorized') unless current_user.reports.find_by(id: params[:id])
   end
 end

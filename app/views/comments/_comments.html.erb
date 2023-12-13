@@ -21,7 +21,7 @@
     </div>
 
     <% if comment.user.id == current_user.id %>
-      <%= button_to t("views.common.destroy", name: Comment.model_name.human), comment, method: :delete, class: "mb-3" %>
+      <%= button_to t("views.common.destroy", name: Comment.model_name.human), polymorphic_path([target, comment]), method: :delete, class: "mb-3" %>
     <% end %>
   <% end %>
 </div>
