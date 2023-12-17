@@ -21,34 +21,37 @@ class Report < ApplicationRecord
     created_at.to_date
   end
 
-  def execute_save_procedure
+  def save_include_mention!
     transaction do
-      save
-      create_mention
+      save!
+      save_mention!
     end
   end
 
-  def execute_update_procedure(report_params)
+  def update_include_mention!(report_params)
     transaction do
-      update(report_params)
-      create_mention
+      update!(report_params)
+      update_mention!
     end
   end
 
-  def create_mention
-    search_for_url.each do |mention_id|
-      active_mentions.create(mentioned_id: mention_id)
+  private
+
+  def save_mention!
+    extract_mention_ids(content).each do |mention_id|
+      active_mentions.create!(mentioned_id: mention_id)
     end
   end
 
-  def search_for_url
-    url = URI.extract(content, ['http'])
-    url.map { |u| u.split('/').last }
+  def update_mention!
+    active_mentions.each(&:destroy!)
+    save_mention!
   end
 
-  def update_mention(content)
-    mentioning_report_ids.each do |id|
-      active_mentions.find_by(mentioned_id: id).destroy! unless content.include? "http://localhost:3000/reports/#{id}"
-    end
+  DETECTED_DOMAIN = %r{http://localhost:3000/reports/\d+}
+
+  def extract_mention_ids(content)
+    url = content.scan(DETECTED_DOMAIN)
+    url.map { |u| u.split('/').last }.uniq
   end
 end
