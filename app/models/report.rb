@@ -23,15 +23,13 @@ class Report < ApplicationRecord
 
   def save_include_mention!
     transaction do
-      save!
-      save_mention!
+      save_mention! if save
     end
   end
 
   def update_include_mention!(report_params)
     transaction do
-      update!(report_params)
-      update_mention!
+      update_mention! if update(report_params)
     end
   end
 
