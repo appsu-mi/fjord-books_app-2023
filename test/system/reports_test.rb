@@ -19,11 +19,13 @@ class ReportsTest < ApplicationSystemTestCase
   test 'should create report' do
     visit reports_url
     click_on '日報の新規作成'
-    fill_in '内容', with: 'テスト'
-    fill_in 'タイトル', with: 'テスト'
+    fill_in '内容', with: '作成内容'
+    fill_in 'タイトル', with: '作成タイトル'
     click_on '登録する'
 
     assert_text '日報が作成されました。'
+    assert_text '作成内容'
+    assert_text '作成タイトル'
     click_on '日報の一覧に戻る'
   end
 
@@ -31,11 +33,13 @@ class ReportsTest < ApplicationSystemTestCase
     visit report_url(@report)
     click_on 'この日報を編集', match: :first
 
-    fill_in '内容', with: 'テスト'
-    fill_in 'タイトル', with: 'テスト'
+    fill_in '内容', with: '編集内容'
+    fill_in 'タイトル', with: '編集タイトル'
     click_on '更新する'
 
     assert_text '日報が更新されました。'
+    assert_text '編集内容'
+    assert_text '編集タイトル'
     click_on '日報の一覧に戻る'
   end
 
@@ -44,5 +48,6 @@ class ReportsTest < ApplicationSystemTestCase
     click_on 'この日報を削除', match: :first
 
     assert_text '日報が削除されました。'
+    assert_text '日報の一覧'
   end
 end

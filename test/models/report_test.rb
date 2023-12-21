@@ -9,6 +9,6 @@ class ReportTest < ActiveSupport::TestCase
   end
 
   test 'created_at to date_object' do
-    assert_equal reports(:test_report).created_at.to_date, reports(:test_report).created_on
+    assert_equal Date.parse(reports(:test_report).created_at.to_s), reports(:test_report).created_on
   end
 end
