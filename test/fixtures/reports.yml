@@ -2,5 +2,10 @@
 
 test_report:
   user: owner
-  title: テスト
-  content: テスト
+  title: タイトル
+  content: 内容
+
+mentioned_report:
+  user: owner
+  title: タイトル
+  content: 内容
